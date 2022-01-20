@@ -1,0 +1,137 @@
+body{
+    margin:0;
+    padding:0;
+    color:#444444;
+}
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+    color:inherit;
+    display: block;
+}
+.container{
+    min-width: 320px;
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+.page{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.page__main{
+    flex:1;
+}
+.page__nav, .page__footer{
+    background: #222222;
+    color:#ffffff;
+}
+.nav{
+    display: flex; justify-content: space-around;
+    margin: 0;
+    padding: 0;
+}
+.nav__item {
+    padding: 8px 0 ;
+    flex:1;
+}
+.nav__link{
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #dddddd;
+    width:100%;
+
+    /*padding:0 40px;*/
+}
+.nav__brand{
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-self: flex-start;
+}
+.nav__brand h3{
+    margin: 0;
+}
+.nav__link:hover{
+    background: #333333;
+    color:inherit;
+    box-shadow: 0 0 20px #555555;
+}
+.footer__text{
+    min-height: 30px;
+    color: #aaaaaa;
+    display: flex;
+    align-items: center;
+}
+.user__page{
+    display: flex;
+    flex-wrap: wrap;
+}
+.user__info{
+    flex:1 0 200px;
+    padding:0  20px;
+}
+.user__string {
+    display: flex;
+    margin: 10px 0;
+    padding: 5px;
+    border-bottom: 1px solid #555555;
+    justify-content: space-between;
+}
+.user__span{
+    color: #ff6a6a;
+}
+.user__string:hover{
+    background: #dddddd;
+}
+.user__char{
+    flex: 0 0 100px;
+}
+.user_value{
+    flex: 0 0 100px;
+}
+.user__button{
+    text-align: center;
+    margin: 20px 0 ;
+}
+.user__logout{
+    display: inline-block;
+    margin: 0 auto;
+    border: 1px solid #bbbbbb;
+    padding: 8px 20px ;
+}
+.user__logout:hover {
+    background: #777777;
+    color:#ffffff;
+}
+.login__form{
+    display: flex;
+    justify-content: center;
+}
+.login__form p{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.login__form input {
+    padding:5px 10px;
+    margin: 0 10px;
+    color: #444444;
+}
+.login__button{
+    justify-content: center !important;
+}
+.login__button input{
+    padding: 5px 30px;
+    cursor: pointer;
+}
+.message{
+    max-width: 250px;
+}
+
+
