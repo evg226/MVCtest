@@ -2,7 +2,7 @@
 
 class ControllerMain extends Controller {
     function index (){
-        $this->view->generate("mainView.php");
+        $this->view->render("mainView.php");
 
     }
 }

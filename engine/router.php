@@ -33,14 +33,12 @@ class Router{
         } else {
             Router::errorPage404("Контроллер $controllerName не найден");
         }
-
     }
 
     static function errorPage404($message){
         $host = 'http://'.$_SERVER['HTTP_HOST'].'/';
-        header('HTTP/1.1 404 Not Found');
-        header("Status: 404 Not Found");
-//        die ("11111");
+//        header('HTTP/1.1 404 Not Found');
+//        header("Status: 404 Not Found");
         header('Location: '.$host.'404');
     }
 }

@@ -7,7 +7,7 @@ class ControllerCatalog extends Controller {
 
     function index (){
         $data=$this->model->getData();
-        $this->view->generate("catalogView.php","templateView.php",$data);
+        $this->view->render("catalogView.php",$data);
 
     }
 }

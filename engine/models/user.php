@@ -21,41 +21,20 @@ class ModelUser extends Model{
     }
 
     function login($userLogin,$userPwd):array{
-        if (!$userLogin||!$userPwd) return [];
-        $statement=self::$db->prepare("SELECT * FROM users WHERE login=:userLogin AND password=:userPwd");
-        $statement->execute([
-            ':userLogin' => $userLogin,
-            ':userPwd' => md5($userPwd)
-        ]);
-        $user=$statement->fetch();
-        return $user?:[];
+        if ($userLogin&&$userPwd) {
+            return self::$db->select("users",["login"=>$userLogin,"password"=>md5($userPwd)]);
+        }
+        else {
+            return [];
+        }
     }
 
-    function signup($userLogin,$userPwd,$userName,$userSurname):array{
-        if (!$userName||!$userPwd) return [];
-        try {
-            $statement=self::$db->prepare(
-                "INSERT into users (login,password,name,surname)
-                        VALUES (:login,:pwd,:userName,:surname)"
-            );
-            $result = $statement->execute([
-                ':login'=>$userLogin,
-                ':pwd'=>md5($userPwd),
-                ':userName'=>$userName,
-                ':surname'=>$userSurname,
-            ]);
-        }catch (PDOException $e){
-            return ["error"=>$e->getMessage()];
+    function signup($login,$password,$name,$surname):array{
+        if ($login&&$password) {
+            return self::$db->delete("users", 51);
+        } else {
+            return [];
         }
-        return $result?[
-            "id"=>self::$db->lastInsertId(),
-            "login"=>$userLogin,
-            "name"=>$userName,
-            "surname"=>$userSurname,
-            "error"=>$result
-        ]
-            :
-            ["error"=>"Не добавлено"];
     }
 
 }
