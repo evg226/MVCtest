@@ -2,7 +2,8 @@
 
 class ControllerMain extends Controller {
     function index (){
-        $this->view->render("mainView.php");
+        $this->view->contentView="mainView.php";
+        return [];
 
     }
 }

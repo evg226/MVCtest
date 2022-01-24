@@ -5,8 +5,13 @@ class Router{
 
         // Из строки запроса получаем controller,action
         $routes=explode("/",$_SERVER['REQUEST_URI']);
-        $controllerName=empty($routes[1])?"main":$routes[1];
-        $action=empty($routes[2])?"index":$routes[2];
+        $start=1;
+        if ($routes[1]==="api") {
+            $asJSON=true;
+            $start=2;
+        }
+        $controllerName=empty($routes[$start])?"main":$routes[$start];
+        $action=empty($routes[$start+1])?"index":$routes[$start+1];
 
         //Загружаем model и controller
         $modelPath="./engine/models/".strtolower($controllerName).".php";
@@ -24,9 +29,14 @@ class Router{
             $controller=new $controllerClass;
 
             if (method_exists($controller,$action)){
-                if($controllerName!="404")
-                    $controller->writeHistory($controllerName,$action);
-                $controller->$action();
+                if($controllerName!="404") $controller->writeHistory($controllerName,$action);
+                    $data=$controller->$action();
+                    if ($asJSON) {
+                        echo json_encode($data);
+                    } else {
+                        $controller->view->render($data);
+                    }
+
             } else {
                 Router::errorPage404("Метод $action контроллера $controllerName не найден");
             }

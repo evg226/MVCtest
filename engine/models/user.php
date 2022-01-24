@@ -31,7 +31,12 @@ class ModelUser extends Model{
 
     function signup($login,$password,$name,$surname):array{
         if ($login&&$password) {
-            return self::$db->delete("users", 51);
+            return self::$db->insert("users", [
+                "login"=>$login,
+                "password"=>md5($password),
+                "name"=>$name,
+                "surname"=>$surname
+            ]);
         } else {
             return [];
         }

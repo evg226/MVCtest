@@ -21,7 +21,7 @@
     </nav>
     <main class="page__main">
         <div class="container">
-            <?php include 'engine/views/'.$contentView; ?>
+            <?php include 'engine/views/'.$this->contentView; ?>
         </div>
     </main>
 

@@ -2,7 +2,7 @@
 
 class ControllerAbout extends Controller {
     function index (){
-        $this->view->render("aboutView.php",);
-
+        $this->view->contentView="aboutView.php";
+        return [];
     }
 }
