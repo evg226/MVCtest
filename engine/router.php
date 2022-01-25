@@ -31,7 +31,7 @@ class Router{
             if (method_exists($controller,$action)){
                 if($controllerName!="404") $controller->writeHistory($controllerName,$action);
                     $data=$controller->$action();
-                    if ($asJSON) {
+                    if (isset($asJSON)) {
                         echo json_encode($data);
                     } else {
                         $controller->view->render($data);

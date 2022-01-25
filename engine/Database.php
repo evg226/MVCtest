@@ -87,12 +87,16 @@ class Database extends PDO {
     }
 
     //$where=["id"=>5,....] $limit="5" или $limit="4,5" $order="id ASC"
-    public function select($table,$where,$limit="1",$order=""):array{
+    public function select($table,$where,$startId="0",$limit="1",$order=""):array{
         $whereStr="";
         $whereParams=[];
         foreach ($where as $key => $value) {
             $whereStr.=($whereStr?" AND ":"WHERE ")."$key=:$key";
             $whereParams[":$key"]=$value;
+        }
+        if (!$whereStr){
+            $whereStr=" WHERE id>:id";
+            $whereParams[":id"]=$startId;
         }
         $query="SELECT * FROM $table $whereStr";
         if ($order) $query.=" ORDER BY $order";
@@ -105,6 +109,5 @@ class Database extends PDO {
         }
         return ["error"=>"Что-то пошло не так"];
     }
-
 }
 

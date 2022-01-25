@@ -8,10 +8,6 @@ abstract class Model{
         self::$db=Database::connect();
     }
 
-    function getData(){
-
-    }
-
     public static function writeHistoryDB($userId,$path){
         try {
             require_once "engine/Database.php";

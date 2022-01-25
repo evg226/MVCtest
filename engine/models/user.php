@@ -2,11 +2,8 @@
 
 class ModelUser extends Model{
     function getUser($userId):array{
-        $statement=self::$db->prepare("SELECT * FROM users WHERE id=:userId");
-        $statement->execute([
-            ":userId"=>$userId
-        ]);
-        $user=$statement->fetch();
+        $user= self::$db->select("users",["id"=>$userId]);
+
         $statement2=self::$db->prepare("
             SELECT path,count(path) as pageCount FROM 
                 (SELECT path from userPages WHERE userId=:userId ORDER BY id DESC) as t
@@ -17,7 +14,7 @@ class ModelUser extends Model{
             ":userId"=>$userId
         ]);
         $pages=$statement2->fetchAll();
-        return ["user"=>$user,"pages"=>$pages];
+        return ["user"=>$user[0],"pages"=>$pages];
     }
 
     function login($userLogin,$userPwd):array{
