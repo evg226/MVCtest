@@ -10,13 +10,26 @@
 <div class="page" >
     <nav class="page__nav">
         <div class="container">
-            <ul class="nav">
-                <li class="nav__item"><a href="/" class="nav__brand"><h3>MVC Engine</h3></a></li>
+            <div class="header">
+            <div class="nav__item nav__item_first">
+                <a href="/" class="nav__brand"><h3>MVC Engine</h3></a>
+                <div id="hamb">
+                    <div class="hamb__element"></div>
+                    <div class="hamb__element"></div>
+                    <div class="hamb__element"></div>
+                </div>
+            </div>
+            <ul id="nav" class="nav">
                 <li class="nav__item"><a href="/" class="nav__link">Home</a></li>
                 <li class="nav__item"><a href="/catalog" class="nav__link">Каталог</a></li>
-                <li class="nav__item"><a href="/user" class="nav__link">Личный кабинет</a></li>
+                <?php if (isset($_SESSION['user'])&&$_SESSION['user']["id"]):?>
+                    <li class="nav__item"><a href="/cart" class="nav__link">Корзина</a></li>
+                    <li class="nav__item"><a href="/order" class="nav__link">Заказы</a></li>
+                <?php endif;?>
+                <li class="nav__item"><a href="/user" class="nav__link">Кабинет</a></li>
                 <li class="nav__item"><a href="about" class="nav__link">О нас</a></li>
             </ul>
+            </div>
         </div>
     </nav>
     <main class="page__main">
@@ -31,5 +44,18 @@
         </div>
     </footer>
 </div>
+<script>
+
+        const hamb=document.getElementById("hamb");
+        const nav=document.getElementById("nav");
+        document.addEventListener("click",(e)=> {
+            if (e.target.id == "hamb") {
+                nav.classList.toggle("nav_visible");
+            } else {
+                nav.classList.remove("nav_visible");
+            }
+        });
+
+</script>
 </body>
 </html>

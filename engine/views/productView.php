@@ -26,7 +26,7 @@
     </div>
 
 <script>
-    window.onload=()=>{
+    window.onload=function(){
         const galleryLeft=document.getElementById("galleryLeft");
         const galleryRight=document.getElementById("galleryRight");
         const galleryImg=document.getElementById("galleryImg");
@@ -34,10 +34,10 @@
         let galleryArr=[];
         let currentImg=0;
         const handleImageChange=(move)=>{
-               currentImg+=move;
-               if (currentImg>=galleryArr.length) currentImg=0;
-               if (currentImg<0) currentImg = galleryArr.length-1;
-               galleryImg.src=`/static/images/${galleryArr[currentImg].path}`;
+            currentImg+=move;
+            if (currentImg>=galleryArr.length) currentImg=0;
+            if (currentImg<0) currentImg = galleryArr.length-1;
+            galleryImg.src=`/static/images/${galleryArr[currentImg].path}`;
         };
         const url="/api/catalog/getImages/?productId="+productId;
         fetch(url)
@@ -48,6 +48,6 @@
                 galleryRight.addEventListener("click",()=>handleImageChange(1));
                 handleImageChange(0);
             })
-        .catch(error=>console.log(error.message));
-     }
+            .catch(error=>console.log(error.message));
+    }
 </script>
