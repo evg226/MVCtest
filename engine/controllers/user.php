@@ -24,7 +24,7 @@ class ControllerUser extends Controller
     {
         $data = ['type' => "login"];
         $this->view->contentView = "userLoginView.php";
-        if ($_POST["userLogin"] && $_POST["userPwd"]) {
+        if (isset($_POST["userLogin"])&&$_POST["userLogin"] && $_POST["userPwd"]) {
             $user = $this->model->login($_POST["userLogin"], $_POST["userPwd"]);
             if ($user) {
                 $_SESSION["user"] = $user[0];

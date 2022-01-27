@@ -42,7 +42,10 @@ class ControllerCart extends Controller
             "size" => $_POST["size"]
         ];
         $this->view->contentView = "result.php";
-        return $this->model->add($values);
+        $response=$this->model->add($values);
+        if (!isset($response['error'])) $response["result"]="Добавлено в корзину id={$response['id']} количество {$response['quantity']}";
+        $response["redirectTo"]="/cart";
+        return $response;
     }
 
     function delete()
@@ -52,6 +55,15 @@ class ControllerCart extends Controller
         } else {
             return ["error" => "Не удалено"];
         }
+    }
 
+    function update()
+    {
+        $input = json_decode(file_get_contents("php://input"), true);
+        if (isset($input["id"])) {
+            return $this->model->update($input);
+        } else {
+            return ["error" => "Не удалено"];
+        }
     }
 }

@@ -49,7 +49,8 @@ class Database extends PDO {
         try {
             $stmt = $this->prepare($query);
             $stmt->execute($values);
-            $result=["id"=>$this->lastInsertId()];
+            $result=$values;
+            $result["id"]=$this->lastInsertId();
         } catch (PDOException $e){
             $result=["error"=>$e->getMessage()];
         }
@@ -68,7 +69,8 @@ class Database extends PDO {
         $query = "UPDATE $table SET $sets WHERE id=:id";
         try {
             $stmt = $this->prepare($query);
-            if($stmt->execute($values)) return $result;
+            $stmt->execute($values);
+            if($stmt->rowCount()) return $result;
         } catch (PDOException $e){
             return ["error"=>$e->getMessage()];
         }

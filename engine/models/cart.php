@@ -28,4 +28,8 @@ class ModelCart extends Model
     function delete($id){
         return self::$db->delete("cart",$id);
     }
+
+    function update($cartItem){
+        return self::$db->update("cart",$cartItem);
+    }
 }
