@@ -1,3 +1,6 @@
+<?php
+    if (isset($_SESSION["user"])) header("Location: /user");
+?>
 <h1><?php echo $data['type']==="login"?"Вход в систему":"Регистрация"?></h1>
 <div class="login__form">
 

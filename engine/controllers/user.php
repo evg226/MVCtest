@@ -29,7 +29,6 @@ class ControllerUser extends Controller
             if ($user) {
                 $_SESSION["user"] = $user[0];
                 $data["message"] = "Успешно";
-                header('Location: ' . $host . "/user");
             } else {
                 $data["message"] = "Неправильный логин или пароль";
             };
@@ -40,10 +39,9 @@ class ControllerUser extends Controller
     }
 
     function logout() {
+        $this->view->contentView = "mainView.php";
         unset($_SESSION['user']);
         session_destroy();
-          $host = 'http://' . $_SERVER['HTTP_HOST'] . '/';
-        header('Location: ' . $host);
         $data["message"] = "Успешно";
         return $data;
     }
@@ -54,17 +52,13 @@ class ControllerUser extends Controller
         if (!isset($_POST["userLogin"])) return $data;
         if ($_POST["userLogin"] && $_POST["userPwd"] && $_POST["userName"] && $_POST["userSurname"]) {
             $user = $this->model->signup($_POST["userLogin"], $_POST["userPwd"], $_POST["userName"], $_POST["userSurname"]);
-            if (!isset($user['error'])) {
-                $_SESSION["user"] = $user;
-                $data["message"] = "Успешно";
-                header('Location: ' . $host . "/user");
-            } else {
-                $data["message"] = $user["error"];
-            }
+            if (!isset($user['error'])) $_SESSION["user"] = $user;
+            return $user;
         } else {
             $data["message"] = "Заполните все поля";
+            return $data;
         }
-        return $data;
+        return $user;
     }
 
 
