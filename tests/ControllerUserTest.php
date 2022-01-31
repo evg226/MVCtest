@@ -1,14 +1,8 @@
 <?php
-session_start();
+//include_once "tests/AppTest.php";
+include_once "engine/controllers/user.php";
+include_once "engine/models/user.php";
 use PHPUnit\Framework\TestCase;
-//include "./engine/index.php";
-include "./engine/views/index.php";
-include "./engine/controllers/index.php";
-include "./engine/models/index.php";
-include "./engine/models/user.php";
-include "./engine/controllers/user.php";
-
-
 
 class ControllerUserTest extends TestCase{
     function testSignup()
@@ -56,9 +50,9 @@ class ControllerUserTest extends TestCase{
         $user->login();
         $this->assertSame("user5",$_SESSION["user"]["login"]);
 
-        $user->getUser($_SESSION["user"]["id"]);
-        $this->assertSame($_SESSION["user"]["name"],$user["name"]);
-        $this->assertSame(true,is_array($user["pages"]));
+        $result=$user->index();
+        $this->assertSame($_SESSION["user"]["login"],$result["user"]["login"]);
+        $this->assertSame(true,is_array($result["pages"]));
 
         $user->logout();
         $this->assertSame(false,isset($_SESSION["user"]));
