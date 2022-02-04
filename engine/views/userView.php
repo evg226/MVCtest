@@ -81,7 +81,7 @@
     }
     async function deleteOrder(id){
         try {
-            const response = await fetch("/api/order/cancel", {
+            const response = await fetch("/api/order/update", {
                 method: "post",
                 headers: {
                     'Accept': 'application/json',
@@ -90,7 +90,8 @@
                 body: JSON.stringify({id})
             });
             const result = await response.json();
-            document.getElementById("status"+id).innerHTML=result.status;
+            if(!!result.status)
+                document.getElementById("status"+id).innerHTML=result.status;
         }catch (error) {
             orderBox.insertAdjacentHTML("beforebegin",error.message);
         }

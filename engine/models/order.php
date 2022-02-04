@@ -5,14 +5,9 @@ class ModelOrder extends Model
     function getOrders():array{
         $userId = $_SESSION["user"]["id"];
         $query = "SELECT *,orders.id as orderId, orders.quantity*orders.price as total
-                    FROM orders INNER JOIN products ON orders.product_id=products.id
-                WHERE user_id=:userId";
-        try {
-            $stmt = self::$db->prepare($query);
-            if ($stmt->execute([":userId" => $userId])) return $stmt->fetchAll();
-        } catch (PDOException $e) {
-            return ["error" => $e->getMessage()];
-        }
+                    FROM orders INNER JOIN products ON orders.product_id=products.id";
+        return self::$db->selectQuery($query,['user_id'=>$userId]);
+
     }
 
     function buy($userId,$address){
@@ -47,7 +42,7 @@ class ModelOrder extends Model
             return ["error" => $e->getMessage()];
         }
     }
-    function cancel($id){
-        return self::$db->update("orders",["id"=>$id,"status"=>"cancelled"]);
+    function update($id,$status="cancelled"){
+        return self::$db->update("orders",["id"=>$id,"status"=>$status]);
     }
 }

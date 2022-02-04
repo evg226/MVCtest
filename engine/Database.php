@@ -111,5 +111,20 @@ class Database extends PDO {
         }
         return ["error"=>"Что-то пошло не так"];
     }
+    public function selectQuery($query,$where=[]){
+        $whereStr="";
+        $whereParams=[];
+        foreach ($where as $key => $value) {
+            $whereStr.=($whereStr?" AND ":" WHERE ")."$key=:$key";
+            $whereParams[":$key"]=$value;
+        }
+        try {
+            $stmt = $this->prepare($query.$whereStr);
+            if($stmt->execute($whereParams)) return $stmt->fetchAll();
+        } catch (PDOException $e){
+            return ["error"=>$e->getMessage()];
+        }
+        return ["error"=>"Что-то пошло не так"];
+    }
 }
 

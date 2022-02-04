@@ -24,9 +24,11 @@
                 <li class="nav__item"><a href="/catalog" class="nav__link">Каталог</a></li>
                 <?php if (isset($_SESSION['user'])&&$_SESSION['user']["id"]):?>
                     <li class="nav__item"><a href="/cart" class="nav__link">Корзина</a></li>
-<!--                    <li class="nav__item"><a href="/order" class="nav__link">Заказы</a></li>-->
                 <?php endif;?>
                 <li class="nav__item"><a href="/user" class="nav__link">Кабинет</a></li>
+                <?php if (isset($_SESSION['user'])&&$_SESSION['user']["id"]&&$_SESSION['user']["role"]=="ADMIN") :?>
+                    <li class="nav__item"><a href="/admin" class="nav__link">Админ</a></li>
+                <?php endif;?>
                 <li class="nav__item"><a href="about" class="nav__link">О нас</a></li>
             </ul>
             </div>

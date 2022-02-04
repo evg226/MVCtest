@@ -4,6 +4,8 @@ require_once "./engine/controllers/index.php"; // контроллер прил�
 require_once "./engine/models/index.php"; // модель приложения
 require_once "./engine/views/index.php"; //представление приложения
 require_once "tests/ControllerUserTest.php";
+require_once "tests/ControllerAdminTest.php";
+require_once "tests/ControllerCatalogTest.php";
 
 use PHPUnit\Framework\TestSuite;
 require_once "ControllerUserTest.php";
@@ -15,6 +17,8 @@ class AppTest extends TestSuite {
     {
         $suite = new AppTest('AppSuite');
         $suite->addTestSuite('ControllerUserTest');
+        $suite->addTestSuite('ControllerAdminTest');
+        $suite->addTestSuite('ControllerCatalogTest');
         return $suite;
     }
     protected function setUp()

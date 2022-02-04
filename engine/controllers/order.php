@@ -29,9 +29,16 @@ class ControllerOrder extends Controller
         return $response;
     }
 
-    function cancel(){
-        if (!isset($_SESSION["user"]["id"])) return ["error"=>"Необходимо авторизоваться"];
-        $input = json_decode(file_get_contents("php://input"), true);
-        return $this->model->cancel($input["id"]);
+    function update(){
+        if (isset($_SESSION["user"]["id"])) {
+            if($_SESSION["user"]["role"]==="ADMIN")
+                $status="sent";
+            else
+                $status="cancelled";
+            $input = json_decode(file_get_contents("php://input"), true);
+            return $this->model->update($input["id"],$status);
+        }  else {
+            return ["error"=>"Необходимо авторизоваться"];
+        }
     }
 }

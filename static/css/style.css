@@ -381,7 +381,7 @@ a{
     border-left: 1px solid #aaaaaa;
     display: grid;
     grid-template-rows: minmax(20px,auto);
-    grid-template-columns: minmax(50px,auto) minmax(50px,auto) minmax(auto,250px) minmax(30px,auto) minmax(30px,auto) minmax(auto,100px) 50px minmax(auto,100px) 30px;
+    grid-template-columns: minmax(50px,auto)  minmax(50px,auto) minmax(auto,250px) minmax(30px,auto) minmax(30px,auto) minmax(auto,100px) 50px minmax(auto,100px) 30px;
     font-size: 14px;
 }
 .order__name_button:hover{
@@ -397,4 +397,67 @@ a{
     border-right: 1px solid #aaaaaa;
     padding: 3px 0;
     border-bottom: 1px solid #aaaaaa;
+}
+.admin__order-box{
+    display: grid;
+    grid-template-columns: repeat(10,auto);
+    border-top: 1px solid #777777 ;
+    border-left: 1px solid #777777 ;
+    margin-bottom: 30px;
+}
+.admin__products-box{
+    display: grid;
+    grid-template-columns: 5% 25% 35% 10% 10% 15% ;
+    margin: 0;
+    border-left: 1px solid #777777 ;
+}
+.admin__order-item{
+    padding:2px 5px;
+    border-right: 1px solid #777777 ;
+    border-bottom: 1px solid #777777 ;
+    word-wrap: break-word;
+}
+.admin__order-item_send{
+    text-align: center;
+    font-weight: 600;
+    cursor:pointer;
+    color:#ffffff;
+    background: #888888;
+}
+.admin__order-item_send:hover{
+    background: #222222;
+}
+
+.admin__button-box{
+    display: flex;
+    margin: 0 -5px;
+}
+
+.admin__button-item{
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #444444 ;
+    flex:1;
+    text-align: center;
+}
+
+.admin__product-item{
+    padding:2px 5px;
+    border-right: 1px solid #777777 ;
+    border-bottom: 1px solid #777777 ;
+    word-wrap: break-word;
+}
+.admin__product-item img {
+    height:20px;
+}
+.admin__button-item:hover{
+    background: #666666;
+    color: #eeeeee;
+}
+.admin__products-box{
+    cursor: pointer;
+}
+.admin__products-box:hover{
+    background: #eeeeee;
+
 }

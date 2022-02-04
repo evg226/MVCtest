@@ -30,5 +30,16 @@ class ModelCatalog extends Model{
     function getImages($productId){
         return self::$db->select("images",["product_id"=>$productId],"0","100");
     }
+
+    function create(array $product): array{
+        return self::$db->insert("products", $product);
+    }
+    function update(array $product): array{
+        return self::$db->update("products", $product);
+    }
+    function delete($id): array{
+        return self::$db->delete("products", $id);
+    }
+
 }
 
