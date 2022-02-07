@@ -15,9 +15,9 @@
     else if ($_GET['entity']==="product")
         require "adminProductView.php";
     else if ($_GET['entity']==="collection")
-        print_r($data);
+        echo "Здесь будет модификация справочника".$_GET['entity'];
     else if ($_GET['entity']==="category")
-        print_r($data);
+        echo "Здесь будет модификация справочника".$_GET['entity'];
     ?>
 
 <?php endif; ?>
