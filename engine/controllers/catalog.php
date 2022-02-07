@@ -3,6 +3,7 @@ class ControllerCatalog extends Controller {
     public function __construct()    {
         parent::__construct();
         $this->model=new ModelCatalog;
+        $this->view->contentView="result.php";
     }
 
     function index (){
@@ -35,7 +36,11 @@ class ControllerCatalog extends Controller {
             "price"=>$_POST["price"],
             "category_id"=>$_POST["category_id"],
         ];
-        return $this->model->create($product);
+        $result=$this->model->create($product);
+        return ["id"=>$result['id'],
+            "result"=>"Изменен {$result['name']}",
+            "redirectTo"=>"/admin/index/?entity=product"];
+
     }
 
     function update():array{
@@ -47,7 +52,10 @@ class ControllerCatalog extends Controller {
         if(isset($_POST["description"])) $product["description"]=$_POST["description"];
         if(isset($_POST["price"])) $product["price"]=$_POST["price"];
         if(isset($_POST["category_id"])) $product["category_id"]=$_POST["category_id"];
-        return $this->model->update($product);
+        $result=$this->model->update($product);
+        return ["id"=>$result['id'],
+            "result"=>"Изменен {$result['name']}",
+            "redirectTo"=>"/admin/index/?entity=product"];
     }
 
     function delete():array{

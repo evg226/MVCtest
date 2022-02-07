@@ -5,7 +5,7 @@ include_once "engine/models/catalog.php";
 use PHPUnit\Framework\TestCase;
 
 class ControllerCatalogTest extends TestCase{
-    function testProductCreate(){
+    function testCatalog(){
         $controller=new ControllerCatalog();
         unset($_POST);
         $_POST["name"]="name";

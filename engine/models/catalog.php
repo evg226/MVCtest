@@ -12,7 +12,7 @@ class ModelCatalog extends Model{
                          price,
                          description,   
                          collection_id,   
-                         category_id,   
+                         category_id as categoryId,   
                          categories.name as 'categories.name',   
                         categories.collection_id FROM products
                     INNER JOIN categories
