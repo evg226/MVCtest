@@ -1,0 +1,17 @@
+{
+    "name": "evg226/ishop",
+    "autoload": {
+        "psr-4": {
+            "Evg226\\Ishop\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "evg226",
+            "email": "evg226@hotmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
